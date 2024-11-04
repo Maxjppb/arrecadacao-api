@@ -17,6 +17,14 @@ composer create-project laravel/laravel nome_projeto-api
 # Criar arquivo api.php
 php artisan install:api
 
+# Criar Vários Usuários (Seeder)
+php artisan make:seeder UserSeeder
+
+## Executar Seeder
+php artisan db:seed (Executa todas as seddes)
+ou
+php artisan db:seed --class=UserSeeder
+
 # Instalar o JWT
 composer require tymon/jwt-auth
 
