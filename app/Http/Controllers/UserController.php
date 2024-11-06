@@ -18,16 +18,16 @@ class UserController extends Controller
     {
         $users = $this->modelUser->orderBy('id')->paginate(10);
 
-        return response()->json([ 
-            'users' => $users
-        ], Response::HTTP_OK);
-
-        if (!$user)
+        if (!$users)
         {
             return response()->json([
-                'message' => 'Usuários  Não Encontrados'
+                'message' => 'Usuários Não Encontrados'
             ],Response::HTTP_NOT_FOUND);
         }
+
+        return response()->json([ 
+            'users' => $users
+        ], Response::HTTP_OK);       
     }
 
     /**
