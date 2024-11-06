@@ -9,3 +9,4 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::get('/users', [UserController::class, 'index'])->name('users_index');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users_show');

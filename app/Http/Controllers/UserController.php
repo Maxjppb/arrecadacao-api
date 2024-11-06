@@ -9,23 +9,24 @@ use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
+    public function __construct(protected User $modelUser) { }
+
     /**
      * Display a listing of the resource.
      */
     public function index() : JsonResponse
     {
-        $users = User::orderBy('id')->paginate(2);
+        $users = $this->modelUser->orderBy('id')->paginate(10);
 
         return response()->json([ 
             'users' => $users
         ], Response::HTTP_OK);
 
-        if (!$users)
+        if (!$user)
         {
-            return response()->json(
-                'Usuários Não Encontrados', 
-                Response::HTTP_NOT_FOUND
-            );
+            return response()->json([
+                'message' => 'Usuários  Não Encontrados'
+            ],Response::HTTP_NOT_FOUND);
         }
     }
 
@@ -40,9 +41,20 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id) : JsonResponse
     {
-        //
+        $user = $this->modelUser->find($id); 
+
+        if (!$user)
+        {
+            return response()->json([
+                'message' => 'Usuário de id ' . $id . ' Não Encontrado'
+            ],Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json([
+            'user' => $user
+        ], Response::HTTP_OK);
     }
 
     /**
