@@ -8,5 +8,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::get('/users', [UserController::class, 'index'])->name('users_index');
-Route::get('/users/{id}', [UserController::class, 'show'])->name('users_show');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::post('/users', [UserController::class, 'store'])->name('user.store');
