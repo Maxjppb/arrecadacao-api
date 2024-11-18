@@ -6,13 +6,12 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function __construct(protected User $modelUser) { }
+    public function __construct(private User $modelUser) { }
 
     /**
      * Display a listing of the resource.
@@ -92,7 +91,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
         //
     }
